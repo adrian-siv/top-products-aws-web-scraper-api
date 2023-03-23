@@ -8,6 +8,8 @@ provider:
 functions:
   api:
     handler: index.handler
+    layers:
+      - 'arn:aws:lambda:us-east-1:085485918211:layer:chromiumLayer:1'
     events:
       - httpApi:
           path: /

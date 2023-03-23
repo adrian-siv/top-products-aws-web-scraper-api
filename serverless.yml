@@ -12,3 +12,18 @@ functions:
       - httpApi:
           path: /
           method: get
+
+# Esta parte precisa ser adaptada futuramente para a funcionalidade de exportação dos dados do scraper para o DynamoDB.
+resources:
+  Resources:
+    CustomerTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: primary_key
+            AttributeType: S
+        BillingMode: PAY_PER_REQUEST
+        KeySchema:
+          - AttributeName: primary_key
+            KeyType: HASH
+        TableName: ${self:service}-customerTable-${sls:stage}

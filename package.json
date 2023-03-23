@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@sparticuz/chromium": "^111.0.0",
+    "aws-sdk": "^2.1341.0"
+  },
+  "dependencies": {
+    "puppeteer-core": "^19.7.5"
+  }
+}

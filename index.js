@@ -6,9 +6,6 @@ module.exports.handler = async () => {
 
   try {
     const browser = await puppeteer.launch({
-      // headless: false,
-      // defaultViewport: false,
-      // args: ['--start-maximized']
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),

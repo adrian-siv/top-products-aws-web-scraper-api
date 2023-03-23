@@ -31,7 +31,7 @@ module.exports.handler = async () => {
         (el) => el.querySelector("._cDEzb_p13n-sc-price_3mJ9Z").textContent,
         producthandle
       );
-      const img = await page.evaluate(
+      const image = await page.evaluate(
         (el) =>
           el
             .querySelector(
@@ -44,7 +44,7 @@ module.exports.handler = async () => {
       productsList.push({
         title,
         price,
-        img
+        image
       })
     }
 

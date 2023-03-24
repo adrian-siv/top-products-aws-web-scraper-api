@@ -21,6 +21,7 @@ module.exports.handler = async (event) => {
       items: await result.Items.map((customer) => {
         return {
           id: customer.id,
+          date: customer.date,
           products_list: JSON.parse(customer.products_list)
         };
       }),

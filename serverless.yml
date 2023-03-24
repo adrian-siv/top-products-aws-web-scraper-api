@@ -4,6 +4,16 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs16.x
+  environment:
+    DYNAMODB_DATA_TABLE: ${self:service}-dataTable
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:PutItem'
+          Resource: !GetAtt DataTable.Arn
+  timeout: 30
 
 functions:
   api:
@@ -28,7 +38,3 @@ resources:
           - AttributeName: products_list
             KeyType: HASH
         TableName: ${self:service}-dataTable
-
-provider:
-  environment:
-    DYNAMODB_DATA_TABLE: ${self:service}-dataTable

@@ -12,6 +12,8 @@ provider:
         - Effect: 'Allow'
           Action:
             - 'dynamodb:PutItem'
+            - 'dynamodb:Get*'
+            - 'dynamodb:Scan*'
           Resource: !GetAtt DataTable.Arn
   timeout: 30
 
@@ -23,6 +25,12 @@ functions:
     events:
       - httpApi:
           path: /bestsellers
+          method: get
+  retrieveData:
+    handler: retrieveData.handler
+    events:
+      - httpApi:
+          path: /datatable
           method: get
 
 resources:

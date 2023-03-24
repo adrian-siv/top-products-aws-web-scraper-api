@@ -1,5 +1,3 @@
-// Pretendo usar este arquivo como base para criar a funcionalidade de exportação dos dados obtidos pelo scraper para o DynamoDB.
-
 const AWS = require('aws-sdk');
 
 module.exports.createRecord = async (productsList) => {

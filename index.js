@@ -1,5 +1,6 @@
 const chromium = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
+const { createRecord } = require("./createRecord");
 
 module.exports.handler = async () => {
   const productsList = [];
@@ -49,7 +50,9 @@ module.exports.handler = async () => {
     }
 
     await browser.close();
-    
+
+    await createRecord(productsList);
+
     return {
       statusCode: 200,
       body: JSON.stringify(
@@ -60,7 +63,8 @@ module.exports.handler = async () => {
         2
       ),
     };
-    
+
+
   } catch (error) {
     console.error("Ocorreu um erro ao coletar dados da página:", error);
     return {
@@ -68,6 +72,5 @@ module.exports.handler = async () => {
       body: JSON.stringify({ message: "Ocorreu um erro ao coletar dados da página." }),
     };
   }
-
 
 };

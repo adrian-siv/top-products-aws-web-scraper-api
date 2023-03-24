@@ -5,7 +5,7 @@ provider:
   name: aws
   runtime: nodejs16.x
   environment:
-    DYNAMODB_DATA_TABLE: ${self:service}-dataTable
+    DYNAMODB_DATA_TABLE: ${self:service}-data-table
   iam:
     role:
       statements:
@@ -31,10 +31,10 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: products_list
+          - AttributeName: id
             AttributeType: S
         BillingMode: PAY_PER_REQUEST
         KeySchema:
-          - AttributeName: products_list
+          - AttributeName: id
             KeyType: HASH
-        TableName: ${self:service}-dataTable
+        TableName: ${self:service}-data-table

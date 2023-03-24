@@ -6,6 +6,7 @@ module.exports.createRecord = async (productsList) => {
   const putParams = {
     TableName: process.env.DYNAMODB_DATA_TABLE,
     Item: {
+      id: Date.now().toString(),
       products_list: JSON.stringify(productsList),
     },
   };

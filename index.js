@@ -18,7 +18,7 @@ module.exports.handler = async () => {
     await page.setViewport({ width: 1366, height: 768 });
 
     const productHandles = await page.$$(
-      "#anonCarousel1 .a-carousel > .a-carousel-card"
+      "#anonCarousel2 .a-carousel > .a-carousel-card"
     );
 
     for (const producthandle of productHandles.slice(0, 3)) {

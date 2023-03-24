@@ -1,21 +1,16 @@
 // Pretendo usar este arquivo como base para criar a funcionalidade de exportação dos dados obtidos pelo scraper para o DynamoDB.
 
-'use strict';
 const AWS = require('aws-sdk');
 
-module.exports.createCustomer = async (event) => {
-  const body = JSON.parse(Buffer.from(event.body, 'base64').toString());
+module.exports.createRecord = async (productsList) => {
+
   const dynamoDb = new AWS.DynamoDB.DocumentClient();
   const putParams = {
-    TableName: process.env.DYNAMODB_CUSTOMER_TABLE,
+    TableName: "top-products-aws-web-scraper-api-dataTable",
     Item: {
-      primary_key: body.name,
-      email: body.email,
+      products_list: JSON.stringify(productsList),
     },
   };
   await dynamoDb.put(putParams).promise();
 
-  return {
-    statusCode: 201,
-  };
 };

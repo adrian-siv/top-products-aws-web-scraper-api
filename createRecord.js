@@ -7,6 +7,7 @@ module.exports.createRecord = async (productsList) => {
     TableName: process.env.DYNAMODB_DATA_TABLE,
     Item: {
       id: Date.now().toString(),
+      date: Date(),
       products_list: JSON.stringify(productsList),
     },
   };

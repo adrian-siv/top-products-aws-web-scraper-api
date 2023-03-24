@@ -18,11 +18,11 @@ module.exports.handler = async (event) => {
     statusCode: 200,
     body: JSON.stringify({
       total: result.Count,
-      items: await result.Items.map((customer) => {
+      items: await result.Items.map((record) => {
         return {
-          id: customer.id,
-          date: customer.date,
-          products_list: JSON.parse(customer.products_list)
+          id: record.id,
+          date: record.date,
+          products_list: JSON.parse(record.products_list)
         };
       }),
     }),

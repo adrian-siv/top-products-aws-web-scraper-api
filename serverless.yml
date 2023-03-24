@@ -4,6 +4,16 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs16.x
+  environment:
+    DYNAMODB_DATA_TABLE: ${self:service}-data-table
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:PutItem'
+          Resource: !GetAtt DataTable.Arn
+  timeout: 30
 
 functions:
   api:
@@ -12,20 +22,19 @@ functions:
       - 'arn:aws:lambda:us-east-1:085485918211:layer:chromiumLayer:1'
     events:
       - httpApi:
-          path: /
+          path: /bestsellers
           method: get
 
-# Esta parte precisa ser adaptada futuramente para a funcionalidade de exportação dos dados do scraper para o DynamoDB.
 resources:
   Resources:
-    CustomerTable:
+    DataTable:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: primary_key
+          - AttributeName: id
             AttributeType: S
         BillingMode: PAY_PER_REQUEST
         KeySchema:
-          - AttributeName: primary_key
+          - AttributeName: id
             KeyType: HASH
-        TableName: ${self:service}-customerTable-${sls:stage}
+        TableName: ${self:service}-data-table

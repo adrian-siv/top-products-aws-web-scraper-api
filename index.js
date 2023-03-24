@@ -1,14 +1,12 @@
 const chromium = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
+const { createRecord } = require("./createRecord");
 
 module.exports.handler = async () => {
   const productsList = [];
 
   try {
     const browser = await puppeteer.launch({
-      // headless: false,
-      // defaultViewport: false,
-      // args: ['--start-maximized']
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
@@ -34,7 +32,7 @@ module.exports.handler = async () => {
         (el) => el.querySelector("._cDEzb_p13n-sc-price_3mJ9Z").textContent,
         producthandle
       );
-      const img = await page.evaluate(
+      const image = await page.evaluate(
         (el) =>
           el
             .querySelector(
@@ -47,24 +45,26 @@ module.exports.handler = async () => {
       productsList.push({
         title,
         price,
-        img
+        image
       })
     }
 
     await browser.close();
-    
+
+    await createRecord(productsList);
+
     return {
       statusCode: 200,
       body: JSON.stringify(
         {
-          message: "Go Serverless v3.0! Your function executed successfully!",
           productsList
         },
         null,
         2
       ),
     };
-    
+
+
   } catch (error) {
     console.error("Ocorreu um erro ao coletar dados da página:", error);
     return {
@@ -72,6 +72,5 @@ module.exports.handler = async () => {
       body: JSON.stringify({ message: "Ocorreu um erro ao coletar dados da página." }),
     };
   }
-
 
 };

@@ -1,7 +1,7 @@
 # 🔎 Top Products AWS Web Scraper API 🛍
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
 
-This is an **API Rest** capable of **scraping** the 3 first bestselling products exihibited in Amazon Bestsellers page and **storing** this information in a **DynamoDB table**. Furthermore, it also provides the user a way of **retrieving the stored data** as records containing id, date, and the respective products list.
+This is an **API Rest** project with the aim of build an application capable of **scraping** the 3 first bestselling products exihibited in Amazon Bestsellers page and **storing** this information in a **DynamoDB table**. Furthermore, it also provides the user a way of **retrieving the stored data** as records containing id, date, and the respective products list.
 
 ## Building Technologies 🛠️
 * [Puppeteer Core](https://www.npmjs.com/package/puppeteer-core) - Used to build the scraping function;

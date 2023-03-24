@@ -6,7 +6,7 @@ module.exports.createRecord = async (productsList) => {
 
   const dynamoDb = new AWS.DynamoDB.DocumentClient();
   const putParams = {
-    TableName: "top-products-aws-web-scraper-api-dataTable",
+    TableName: process.env.DYNAMODB_DATA_TABLE,
     Item: {
       products_list: JSON.stringify(productsList),
     },

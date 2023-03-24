@@ -28,3 +28,7 @@ resources:
           - AttributeName: products_list
             KeyType: HASH
         TableName: ${self:service}-dataTable
+
+provider:
+  environment:
+    DYNAMODB_DATA_TABLE: ${self:service}-dataTable
